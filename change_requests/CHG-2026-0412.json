@@ -1,0 +1,26 @@
+{
+  "changeId": "CHG-2026-0412",
+  "requestedBy": "ALPHA",
+  "summary": "Map the requested delivery time window",
+  "scope": "Group ORDERS → canonical order template; inherited by the Spain variant",
+  "mapping": [
+    {
+      "source": "DTM C507 where 2005 = 64 (delivery date/time, earliest), format 203 CCYYMMDDHHMM",
+      "target": "requestedDelivery.windowFrom",
+      "rule": "take HHMM, format HH:MM"
+    },
+    {
+      "source": "DTM C507 where 2005 = 63 (delivery date/time, latest), format 203",
+      "target": "requestedDelivery.windowTo",
+      "rule": "take HHMM, format HH:MM"
+    },
+    {
+      "source": "absent",
+      "target": "windowFrom / windowTo",
+      "rule": "null"
+    }
+  ],
+  "usaOverride": "USA variant (X12 850) keeps its own rule: requestedDelivery.date from DTM*002; window fields not mapped (null). Must remain unchanged after the release.",
+  "promotion": "Dev → Test → Prod; approver must hold a different role from the developer",
+  "rollback": "restore the previous version; test T1 then returns null window fields"
+}
