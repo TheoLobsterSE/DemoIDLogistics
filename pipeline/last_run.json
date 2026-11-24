@@ -1,0 +1,44 @@
+{
+    "run":  "2026-11-24T15:46:21",
+    "withBreakingEvent":  true,
+    "gate":  "BLOCKED",
+    "tests":  [
+                  {
+                      "test":  "T1",
+                      "verdict":  "FAIL",
+                      "detail":  "2 difference(s); HTTP 200; got windowFrom= windowTo=",
+                      "dataPack":  "ALPHA_ORDERS_ALPHA-PO-2026-10452_with_window.edi"
+                  },
+                  {
+                      "test":  "T2",
+                      "verdict":  "PASS",
+                      "detail":  "as expected",
+                      "dataPack":  "no window: unchanged output"
+                  },
+                  {
+                      "test":  "T3",
+                      "verdict":  "PASS",
+                      "detail":  "as expected",
+                      "dataPack":  "USA override untouched"
+                  },
+                  {
+                      "test":  "T4",
+                      "verdict":  "PASS",
+                      "detail":  "as expected",
+                      "dataPack":  "unit translation still applied"
+                  },
+                  {
+                      "test":  "T5",
+                      "verdict":  "PASS",
+                      "detail":  "OrderShipped 2.0 is valid against contract 1.0: compatible",
+                      "dataPack":  "valid (compatible change): promotion allowed"
+                  },
+                  {
+                      "test":  "T6",
+                      "verdict":  "BLOCKS",
+                      "detail":  "OrderShipped 3.0 breaks contract 1.0: $.data.carrierRef: required, missing; $.data.status: required, missing",
+                      "dataPack":  "invalid (breaking change): pipeline blocks the promotion"
+                  }
+              ],
+    "stage":  "dev"
+}
