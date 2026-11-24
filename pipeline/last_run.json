@@ -1,18 +1,18 @@
 {
-    "run":  "2026-11-24T15:46:21",
-    "withBreakingEvent":  true,
+    "run":  "2026-11-24T15:52:50",
+    "withBreakingEvent":  false,
     "gate":  "BLOCKED",
     "tests":  [
                   {
                       "test":  "T1",
                       "verdict":  "FAIL",
-                      "detail":  "2 difference(s); HTTP 200; got windowFrom= windowTo=",
+                      "detail":  "1 difference(s); HTTP 200; got windowFrom=08:00 windowTo=12:00",
                       "dataPack":  "ALPHA_ORDERS_ALPHA-PO-2026-10452_with_window.edi"
                   },
                   {
                       "test":  "T2",
-                      "verdict":  "PASS",
-                      "detail":  "as expected",
+                      "verdict":  "FAIL",
+                      "detail":  "3 difference(s); HTTP 200; got windowFrom= windowTo=",
                       "dataPack":  "no window: unchanged output"
                   },
                   {
@@ -35,8 +35,8 @@
                   },
                   {
                       "test":  "T6",
-                      "verdict":  "BLOCKS",
-                      "detail":  "OrderShipped 3.0 breaks contract 1.0: $.data.carrierRef: required, missing; $.data.status: required, missing",
+                      "verdict":  "NOT IN RELEASE",
+                      "detail":  "OrderShipped 3.0 would break contract 1.0 ($.data.carrierRef: required, missing; $.data.status: required, missing); this release does not carry it",
                       "dataPack":  "invalid (breaking change): pipeline blocks the promotion"
                   }
               ],
